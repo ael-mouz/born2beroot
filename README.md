@@ -1,39 +1,64 @@
 # born2beroot
-1.SSH
-    /*https://phoenixnap.com/kb/how-to-enable-ssh-on-debian*/
-    /*https://www.ubuntu18.com/ubuntu-change-ssh-port/*/
-    /*https://www.ibm.com/docs/en/db2/11.5?topic=installation-enable-disable-remote-root-login*/
-    ```
-    sudo apt install openssh-server
-    ```
-    ```
-    sudo apt-get install openssh-client
-    ```
-    nano /etc/ssh/sshd_config
-        port 4242
-        PermitRootLogin no
-    ```
-    ```
-    sudo systemctl status ssh
-    ```
-    ```
-    sudo systemctl disable ssh
-    ```
-    ```
-    sudo systemctl enable ssh
-    ```
-    ```
-    sudo service ssh stop
-    ```
-    ```
-    sudo service ssh start
-    ```
-    ```
-    sudo service ssh restart
-    ```
-    ```
-    ssh username@host -p [port]
-    ```
+
+## Setup SSH
+
+[How to Enable SSH](https://phoenixnap.com/kb/how-to-enable-ssh-on-debian)
+
+[How to Change SSH Port](https://www.ubuntu18.com/ubuntu-change-ssh-port/)
+
+[Enable or disable remote root login](https://www.ibm.com/docs/en/db2/11.5?topic=installation-enable-disable-remote-root-login)
+
+1-Install ssh
+```bash
+$ sudo apt install openssh-server
+$ sudo apt-get install openssh-client
+```
+2-Change port ssh ```add the following line```
+```bash
+$ sudo nano /etc/ssh/sshd_config
+    port 4242
+```
+3-Disable remote root login ```add the following line```
+```bash
+$ sudo nano /etc/ssh/sshd_config
+    PermitRootLogin no
+```
+4-Check the status of the SSH service
+```bash
+$ sudo systemctl status ssh
+
+or
+
+$ sudo service ssh status
+```
+5-Enable or start the SSH service
+```bash
+$ sudo systemctl enable ssh
+
+or
+
+$ sudo service ssh start
+```
+6-Disable or stop the SSH service
+```bash
+$ sudo systemctl disable ssh
+
+or
+
+$ sudo service ssh stop
+```
+7-Restart the SSH service
+```bash
+$ sudo systemctl restart ssh
+
+or
+
+$ sudo service ssh restart
+```
+8-Connect to server
+```bash
+$ ssh username@host -p [port]
+```
     
 2.UFW
     /*https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9*/
