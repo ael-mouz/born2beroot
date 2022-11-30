@@ -61,130 +61,127 @@ $ ssh username@host -p [port]
 ```
     
 2.UFW
-/*https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9*/
+(https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
+```bash
+    sudo apt install ufw
 ```
+```bash
+    sudo ufw allow ssh
 ```
-sudo apt install ufw
+```bash
+    sudo ufw allow [port]
 ```
+```bash
+    sudo ufw enable
 ```
-sudo ufw allow ssh
+```bash
+    sudo ufw disable
 ```
+```bash
+    sudo ufw reset
 ```
-sudo ufw allow [port]
+```bash
+    sudo ufw status numbered
 ```
-```
-sudo ufw enable
-```
-```
-sudo ufw disable
-```
-```
-sudo ufw reset
-```
-```
-sudo ufw status numbered
-```
-```
-sudo ufw delete [number]
+```bash
+    sudo ufw delete [number]
 ```
 
 3.HOSTNAME
-/*https://www.cyberciti.biz/faq/debian-change-hostname-permanently/*/
+(https://www.cyberciti.biz/faq/debian-change-hostname-permanently/)
+```bash
+    hostnamectl set-hostname [machine-name-here]
 ```
-hostnamectl set-hostname [machine-name-here]
+```bash
+    hostname
 ```
+```bash
+    nano /etc/hosts
+        127.0.0.1 [hostname]
 ```
-hostname
-```
-```
-nano /etc/hosts
-    127.0.0.1 [hostname]
-```
-```
-nano /etc/hostname
-    [hostname]
+```bash
+    nano /etc/hostname
+        [hostname]
 ```
 
 4.SUDO
 /*---------------------------------*/
-/*https://phoenixnap.com/kb/how-to-create-sudo-user-on-ubuntu*/
-/*https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps*/
-```
+(https://phoenixnap.com/kb/how-to-create-sudo-user-on-ubuntu)
+(https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps)
+```bash
 apt-get install sudo
 ```
-```
+```bash
 adduser [username]
 ```
-```
+```bash
 adduser [username] sudo
 ```
-```
+```bash
 usermod -aG sudo [username]
 ```
-```
+```bash
 deluser --remove-home [username]
 ```
-```
+```bash
 su - newuser
 ```
 /*---------------------------------*/
-/*https://linuxize.com/post/how-to-create-groups-in-linux/*/
-```
+(https://linuxize.com/post/how-to-create-groups-in-linux/)
+```bash
 groupadd mygroup
 ```
-```
+```bash
 getent group
 ```
-```
+```bash
 getent group [username]
 ```
-```
+```bash
 sudo groupdel [group-name-here]
 ```
-```
 /*---------------------------------*/
-/*https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/*/
+(https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/)
 
-```
-nano /etc/sudoers
-    Defaults    passwd_tries=3
-    Defaults    badpass_message="Password is wrong, please try again"
-    Defaults    logfile="/var/log/sudo/sudo.log"
-    Defaults    log_input, log_output
-    Defaults    requiretty
-    Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+```bash
+    nano /etc/sudoers
+        Defaults    passwd_tries=3
+        Defaults    badpass_message="Password is wrong, please try again"
+        Defaults    logfile="/var/log/sudo/sudo.log"
+        Defaults    log_input, log_output
+        Defaults    requiretty
+        Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 ```
 
 5.PASSWORD
 /*---------------------------------*/
-/*https://www.redhat.com/sysadmin/password-expiration-date-linux*/
+(https://www.redhat.com/sysadmin/password-expiration-date-linux)
+```bash
+    nano /etc/login.defs
+        PASS_MAX_DAYS   30
+        PASS_MIN_DAYS   2
+        PASS_WARN_AGE   7
 ```
-nano /etc/login.defs
-    PASS_MAX_DAYS   30
-    PASS_MIN_DAYS   2
-    PASS_WARN_AGE   7
+```bash
+    sudo chage -M 30 -m 2 -w 7 [username]
 ```
-```
-sudo chage -M 30 -m 2 -w 7 [username]
-```
-```
-sudo chage -l [username]
+```bash
+    sudo chage -l [username]
 ```
 /*---------------------------------*/
-/*https://ostechnix.com/how-to-set-password-policies-in-linux/*/
-/*https://www.xmodulo.com/set-password-policy-linux.html*/
-/*https://computingforgeeks.com/enforce-strong-user-password-policy-ubuntu-debian/*/
-/*https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2020-09-03/finding/V-218047*/
+(https://ostechnix.com/how-to-set-password-policies-in-linux/)
+(https://www.xmodulo.com/set-password-policy-linux.html)
+(https://computingforgeeks.com/enforce-strong-user-password-policy-ubuntu-debian/)
+(https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2020-09-03/finding/V-218047)
+```bash
+    sudo apt-get -y install libpam-pwquality cracklib-runtime
 ```
-sudo apt-get -y install libpam-pwquality cracklib-runtime
+```bash
+    nano /etc/pam.d/common-password
+        password    requisite   pam_pwquality.so retry=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
 ```
-```
-nano /etc/pam.d/common-password
-    password    requisite   pam_pwquality.so retry=3 minlen=10 dcredit=-1 ucredit=-1 
-                            lcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
-```
-```
-sudo passwd [username]
+```bash
+    sudo passwd [username]
 ```
 
 6.SCRIPT MONITORING
