@@ -260,7 +260,7 @@ wall "
         #Sudo : $sudo cmd
 "
 ```
-
+(https://www.linkedin.com/pulse/understanding-physical-logical-cpus-akshay-deshpande#:~:text=Now%20that%20we%20know%20the,Cores%20present%20on%20a%20processor.)
 ---
 
 (https://vitux.com/how-to-setup-a-cron-job-in-debian-10/)
