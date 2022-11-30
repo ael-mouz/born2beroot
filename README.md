@@ -62,7 +62,7 @@ $ ssh username@host -p [port]
     
 ## UFW
 
-(https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
+[How To Set Up a Firewall with UFW](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
 
 ```bash
     sudo apt install ufw
