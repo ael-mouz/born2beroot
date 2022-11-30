@@ -60,8 +60,10 @@ $ sudo service ssh restart
 $ ssh username@host -p [port]
 ```
     
-2.UFW
+## UFW
+
 (https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
+
 ```bash
     sudo apt install ufw
 ```
@@ -87,8 +89,10 @@ $ ssh username@host -p [port]
     sudo ufw delete [number]
 ```
 
-3.HOSTNAME
+## HOSTNAME
+
 (https://www.cyberciti.biz/faq/debian-change-hostname-permanently/)
+
 ```bash
     hostnamectl set-hostname [machine-name-here]
 ```
@@ -104,10 +108,12 @@ $ ssh username@host -p [port]
         [hostname]
 ```
 
-4.SUDO
-/*---------------------------------*/
+## SUDO
+
 (https://phoenixnap.com/kb/how-to-create-sudo-user-on-ubuntu)
+
 (https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps)
+
 ```bash
 apt-get install sudo
 ```
@@ -126,8 +132,11 @@ deluser --remove-home [username]
 ```bash
 su - newuser
 ```
-/*---------------------------------*/
+
+---
+
 (https://linuxize.com/post/how-to-create-groups-in-linux/)
+
 ```bash
 groupadd mygroup
 ```
@@ -140,7 +149,9 @@ getent group [username]
 ```bash
 sudo groupdel [group-name-here]
 ```
-/*---------------------------------*/
+
+---
+
 (https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/)
 
 ```bash
@@ -153,9 +164,10 @@ sudo groupdel [group-name-here]
         Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 ```
 
-5.PASSWORD
-/*---------------------------------*/
+## PASSWORD
+
 (https://www.redhat.com/sysadmin/password-expiration-date-linux)
+
 ```bash
     nano /etc/login.defs
         PASS_MAX_DAYS   30
@@ -168,11 +180,17 @@ sudo groupdel [group-name-here]
 ```bash
     sudo chage -l [username]
 ```
-/*---------------------------------*/
+
+---
+
 (https://ostechnix.com/how-to-set-password-policies-in-linux/)
+
 (https://www.xmodulo.com/set-password-policy-linux.html)
+
 (https://computingforgeeks.com/enforce-strong-user-password-policy-ubuntu-debian/)
+
 (https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2020-09-03/finding/V-218047)
+
 ```bash
     sudo apt-get -y install libpam-pwquality cracklib-runtime
 ```
@@ -184,20 +202,32 @@ sudo groupdel [group-name-here]
     sudo passwd [username]
 ```
 
-6.SCRIPT MONITORING
-/*---------------------------------*/
-/*https://linuxize.com/post/wall-command-in-linux/*/
-/*https://vitux.com/how-to-get-hardware-details-in-debian-11/*/
-/*https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/*/
-/*https://phoenixnap.com/kb/free-linux-command#:~:text=The%20Linux%20free%20command%20outputs,the%20free%20command%20in%20Linux.*/
-/*https://www.redhat.com/sysadmin/Linux-df-command#:~:text=The%20df%20command%20displays%20the,with%20each%20file%20name's%20argument.*/
-/*https://www.geeksforgeeks.org/mpstat-command-in-linux-with-examples/*/
-/*https://www.javatpoint.com/who-command-in-linux#:~:text=The%20Linux%20%22who%22%20command%20lets,command%20to%20get%20that%20information.*/
-/*https://www.digitalocean.com/community/tutorials/if-else-in-shell-scripts*/
--------/*https://www.redhat.com/sysadmin/netstat#:~:text=The%20network%20statistics%20(%20netstat%20)%20command,common%20uses%20for%20this%20command.*/
-/*https://devconnected.com/how-to-list-users-and-groups-on-linux/#:~:text=In%20order%20to%20list%20users,navigate%20within%20the%20username%20list.*/
-/*https://www.geeksforgeeks.org/hostname-command-in-linux-with-examples/*/
-/*https://unix.stackexchange.com/questions/167935/details-about-sudo-commands-executed-by-all-user*/
+## SCRIPT MONITORING
+
+(https://linuxize.com/post/wall-command-in-linux/
+
+(https://vitux.com/how-to-get-hardware-details-in-debian-11/
+
+(https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/
+
+(https://phoenixnap.com/kb/free-linux-command#:~:text=The%20Linux%20free%20command%20outputs,the%20free%20command%20in%20Linux.
+
+(https://www.redhat.com/sysadmin/Linux-df-command#:~:text=The%20df%20command%20displays%20the,with%20each%20file%20name's%20argument.
+
+(https://www.geeksforgeeks.org/mpstat-command-in-linux-with-examples/
+
+(https://www.javatpoint.com/who-command-in-linux#:~:text=The%20Linux%20%22who%22%20command%20lets,command%20to%20get%20that%20information.
+
+(https://www.digitalocean.com/community/tutorials/if-else-in-shell-scripts
+
+(https://www.redhat.com/sysadmin/netstat#:~:text=The%20network%20statistics%20(%20netstat%20)%20command,common%20uses%20for%20this%20command.
+
+(https://devconnected.com/how-to-list-users-and-groups-on-linux/#:~:text=In%20order%20to%20list%20users,navigate%20within%20the%20username%20list.
+
+(https://www.geeksforgeeks.org/hostname-command-in-linux-with-examples/
+
+(https://unix.stackexchange.com/questions/167935/details-about-sudo-commands-executed-by-all-user
+
 ```
 #!/bin/bash
 arch=$(uname -a)
@@ -230,8 +260,11 @@ wall "
         #Sudo : $sudo cmd
 "
 ```
-/*---------------------------------*/
-/*https://vitux.com/how-to-setup-a-cron-job-in-debian-10/*/
+
+---
+
+(https://vitux.com/how-to-setup-a-cron-job-in-debian-10/)
+
 ```
 sudo crontab -e
 ```
@@ -241,14 +274,16 @@ sudo crontab -l
 ```
 sudo crontab -r
 ```
-7.BONUS
-https://geekrewind.com/install-wordpress-on-ubuntu-16-04-lts-with-lighttpd-mariadb-and-php-7-1-support/
+
+## BONUS
+
+(https://geekrewind.com/install-wordpress-on-ubuntu-16-04-lts-with-lighttpd-mariadb-and-php-7-1-support/)
 
 
-https://www.atlantic.net/dedicated-server-hosting/how-to-install-wordpress-with-lighttpd-web-server-on-ubuntu-20-04/
+(https://www.atlantic.net/dedicated-server-hosting/how-to-install-wordpress-with-lighttpd-web-server-on-ubuntu-20-04/)
 
 
-https://www.osradar.com/install-wordpress-with-lighttpd-debian-10/
+(https://www.osradar.com/install-wordpress-with-lighttpd-debian-10/)
 
 
 https://www.tecmint.com/install-lighttpd-in-ubuntu/
