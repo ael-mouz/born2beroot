@@ -1,234 +1,284 @@
+
 # born2beroot
 
 ## Setup SSH
 
-[How to Enable SSH](https://phoenixnap.com/kb/how-to-enable-ssh-on-debian)
+[Enable SSH](https://phoenixnap.com/kb/how-to-enable-ssh-on-debian)
 
-[How to Change SSH Port](https://www.ubuntu18.com/ubuntu-change-ssh-port/)
+[Change SSH Port](https://www.ubuntu18.com/ubuntu-change-ssh-port/)
 
 [Enable or disable remote root login](https://www.ibm.com/docs/en/db2/11.5?topic=installation-enable-disable-remote-root-login)
 
-1-Install ssh
+---
+\
+1.Install ssh
 ```bash
-$ sudo apt install openssh-server
-$ sudo apt-get install openssh-client
+	$ sudo apt install openssh-server
+	$ sudo apt-get install openssh-client
 ```
-2-Change port ssh ```add the following line```
+2.Change port ssh `add the following line`
 ```bash
-$ sudo nano /etc/ssh/sshd_config
-    port 4242
+	$ sudo nano /etc/ssh/sshd_config
+		port 4242
 ```
-3-Disable remote root login ```add the following line```
+3.Disable remote root login `add the following line`
 ```bash
-$ sudo nano /etc/ssh/sshd_config
-    PermitRootLogin no
+	$ sudo nano /etc/ssh/sshd_config
+		PermitRootLogin no
 ```
-4-Check the status of the SSH service
+4.Check the status of the SSH service
 ```bash
-$ sudo systemctl status ssh
-
-or
-
-$ sudo service ssh status
+	$ sudo systemctl status ssh
 ```
-5-Enable or start the SSH service
 ```bash
-$ sudo systemctl enable ssh
-
-or
-
-$ sudo service ssh start
+	$ sudo service ssh status
 ```
-6-Disable or stop the SSH service
+5.Enable or start the SSH service
 ```bash
-$ sudo systemctl disable ssh
-
-or
-
-$ sudo service ssh stop
+	$ sudo systemctl enable ssh
 ```
-7-Restart the SSH service
 ```bash
-$ sudo systemctl restart ssh
-
-or
-
-$ sudo service ssh restart
+	$ sudo service ssh start
 ```
-8-Connect to server
+6.Disable or stop the SSH service
 ```bash
-$ ssh username@host -p [port]
+	$ sudo systemctl disable ssh
 ```
-    
+```bash
+	$ sudo service ssh stop
+```
+7.Restart the SSH service
+```bash
+	$ sudo systemctl restart ssh
+```
+```bash
+	$ sudo service ssh restart
+```
+8.Connect to server
+```bash
+	$ ssh username@host -p [port]
+```
+	
 ## UFW
 
-[How To Set Up a Firewall with UFW](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
+[Set Up a Firewall with UFW](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9)
 
+---
+\
+1.Install UFW
 ```bash
-    sudo apt install ufw
+	$ sudo apt install ufw
 ```
+2.Allow UFW port
 ```bash
-    sudo ufw allow ssh
+	$ sudo ufw allow [port]
 ```
+3.Enble UFW service
 ```bash
-    sudo ufw allow [port]
+	$ sudo ufw enable
 ```
+4.Disable UFW service
 ```bash
-    sudo ufw enable
+	$ sudo ufw disable
 ```
+5.Reset UFW service
 ```bash
-    sudo ufw disable
+	$ sudo ufw reset
 ```
+6.Check open port of the UFW service
 ```bash
-    sudo ufw reset
+	$ sudo ufw status numbered
 ```
+7.Delete UFW port
 ```bash
-    sudo ufw status numbered
-```
-```bash
-    sudo ufw delete [number]
+	$ sudo ufw delete [number]
 ```
 
 ## HOSTNAME
 
-(https://www.cyberciti.biz/faq/debian-change-hostname-permanently/)
+[Change Hostname / Computer Name Permanently](https://www.cyberciti.biz/faq/debian-change-hostname-permanently/)
 
+---
+\
+1.Show the hostname
 ```bash
-    hostnamectl set-hostname [machine-name-here]
+	$ hostname
 ```
+2.Change Hostname
 ```bash
-    hostname
+	$ sudo hostname [machine-name-here]
 ```
+3.Change Hostname permanently
 ```bash
-    nano /etc/hosts
-        127.0.0.1 [hostname]
+	$ sudo hostnamectl set-hostname [machine-name-here]
 ```
+4.Change the hostname by Edit the file `/etc/hostname`
 ```bash
-    nano /etc/hostname
-        [hostname]
+	$ sudo nano /etc/hostname
+		[hostname]
+```
+5.Change the hostname by Edit the file `/etc/hosts`
+```bash
+	$ sudo nano /etc/hosts
+		127.0.0.1 [hostname]
 ```
 
 ## SUDO
 
-(https://phoenixnap.com/kb/how-to-create-sudo-user-on-ubuntu)
+[Add User To Sudoers & Add User To Sudo Group](https://phoenixnap.com/kb/how-to-create-sudo-user-on-ubuntu)
 
-(https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps)
+[Add, Delete, and Grant Sudo Privileges to Users](https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps)
 
-```bash
-apt-get install sudo
-```
-```bash
-adduser [username]
-```
-```bash
-adduser [username] sudo
-```
-```bash
-usermod -aG sudo [username]
-```
-```bash
-deluser --remove-home [username]
-```
-```bash
-su - newuser
-```
+[Create Groups](https://linuxize.com/post/how-to-create-groups-in-linux/)
+
+[Useful Sudoers Configurations](https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/)
 
 ---
-
-(https://linuxize.com/post/how-to-create-groups-in-linux/)
-
+### Set up sudo
+\
+1.Install sudo
 ```bash
-groupadd mygroup
+	$ apt-get install sudo
+```
+2.Create user
+```bash
+	$ sudo adduser [username]
+```
+3.Add user to sudo group && Grant privileges
+```bash
+	$ sudo adduser [username] sudo
 ```
 ```bash
-getent group
+	$ sudo usermod -aG sudo [username]
 ```
+4.Delete user
 ```bash
-getent group [username]
+	$ sudo deluser --remove-home [username]
 ```
+5.Switch to another user
 ```bash
-sudo groupdel [group-name-here]
+	$ su - newuser
 ```
-
 ---
-
-(https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/)
-
+---
+---
+### Create Groups
+\
+1.Create group
 ```bash
-    nano /etc/sudoers
-        Defaults    passwd_tries=3
-        Defaults    badpass_message="Password is wrong, please try again"
-        Defaults    logfile="/var/log/sudo/sudo.log"
-        Defaults    log_input, log_output
-        Defaults    requiretty
-        Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+	$ sudo groupadd [mygroup]
+```
+2.Show group
+```bash
+	$ sudo getent group 
+```
+3.Show group Users
+```bash
+	$ sudo getent group [username]
+```
+4.Delete group
+```bash
+	$ sudo groupdel [group-name-here]
+```
+---
+---
+---
+### Sudoers Configurations
+\
+1.Add this lines to `visudo` or `/etc/sudoers`
+```bash
+	$ sudo nano /etc/sudoers
+		Defaults    passwd_tries=3
+		Defaults    badpass_message="Password is wrong, please try again"
+		Defaults    logfile="/var/log/sudo/sudo.log"
+		Defaults    log_input, log_output
+		Defaults    requiretty
+		Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 ```
 
 ## PASSWORD
 
-(https://www.redhat.com/sysadmin/password-expiration-date-linux)
+[Set user password expirations](https://www.redhat.com/sysadmin/password-expiration-date-linux)
 
-```bash
-    nano /etc/login.defs
-        PASS_MAX_DAYS   30
-        PASS_MIN_DAYS   2
-        PASS_WARN_AGE   7
-```
-```bash
-    sudo chage -M 30 -m 2 -w 7 [username]
-```
-```bash
-    sudo chage -l [username]
-```
+[Set Password policy 1](https://ostechnix.com/how-to-set-password-policies-in-linux/)
+
+[set password policy 2](https://www.xmodulo.com/set-password-policy-linux.html)
+
+[set password policy 3](https://computingforgeeks.com/enforce-strong-user-password-policy-ubuntu-debian/)
+
+[set password policy 4](https://access.redhat.com/discussions/1265203)
 
 ---
-
-(https://ostechnix.com/how-to-set-password-policies-in-linux/)
-
-(https://www.xmodulo.com/set-password-policy-linux.html)
-
-(https://computingforgeeks.com/enforce-strong-user-password-policy-ubuntu-debian/)
-
-(https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2020-09-03/finding/V-218047)
-
+### User password expiration
+\
+1.Edit this lines on `/etc/login.defs`
 ```bash
-    sudo apt-get -y install libpam-pwquality cracklib-runtime
+	$ sudo nano /etc/login.defs
+		PASS_MAX_DAYS   30
+		PASS_MIN_DAYS   2
+		PASS_WARN_AGE   7
 ```
+2.Change the password expiration for a user
 ```bash
-    nano /etc/pam.d/common-password
-        password    requisite   pam_pwquality.so retry=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
+	$ sudo chage -M 30 -m 2 -w 7 [username]
 ```
+3.Show the password expiration of a user
 ```bash
-    sudo passwd [username]
+	$ sudo chage -l [username]
+```
+---
+---
+---
+### password policy
+\
+1.Install this library
+```bash
+	$ sudo apt-get -y install libpam-pwquality cracklib-runtime
+```
+2.Add the line below to `/etc/pam.d/common-password`
+```bash
+	$ sudo nano /etc/pam.d/common-password
+		password    requisite   pam_pwquality.so retry=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
+```
+3.Chnage password
+```bash
+	$ sudo passwd [username]
 ```
 
 ## SCRIPT MONITORING
 
-(https://linuxize.com/post/wall-command-in-linux/
+[Wall command](https://linuxize.com/post/wall-command-in-linux/)
 
-(https://vitux.com/how-to-get-hardware-details-in-debian-11/
+[Get System and Hardware Details with uname](https://vitux.com/how-to-get-hardware-details-in-debian-11/)
 
-(https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/
+[check how many CPUs are there in Linux system](https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/)
 
-(https://phoenixnap.com/kb/free-linux-command#:~:text=The%20Linux%20free%20command%20outputs,the%20free%20command%20in%20Linux.
+[Using the Linux free Command](https://phoenixnap.com/kb/free-linux-command)
 
-(https://www.redhat.com/sysadmin/Linux-df-command#:~:text=The%20df%20command%20displays%20the,with%20each%20file%20name's%20argument.
+[Check your disk space use with the Linux df command](https://www.redhat.com/sysadmin/Linux-df-command)
 
-(https://www.geeksforgeeks.org/mpstat-command-in-linux-with-examples/
+[mpstat Command in Linux](https://www.geeksforgeeks.org/mpstat-command-in-linux-with-examples/)
 
-(https://www.javatpoint.com/who-command-in-linux#:~:text=The%20Linux%20%22who%22%20command%20lets,command%20to%20get%20that%20information.
+[Who command in Linux](https://www.javatpoint.com/who-command-in-linux)
 
-(https://www.digitalocean.com/community/tutorials/if-else-in-shell-scripts
+[if-else in Shell Scripts](https://www.digitalocean.com/community/tutorials/if-else-in-shell-scripts)
 
-(https://www.redhat.com/sysadmin/netstat#:~:text=The%20network%20statistics%20(%20netstat%20)%20command,common%20uses%20for%20this%20command.
+[Linux networking: netstat](https://www.redhat.com/sysadmin/netstat)
 
-(https://devconnected.com/how-to-list-users-and-groups-on-linux/#:~:text=In%20order%20to%20list%20users,navigate%20within%20the%20username%20list.
+[List Users on Linux](https://devconnected.com/how-to-list-users-and-groups-on-linux/)
 
-(https://www.geeksforgeeks.org/hostname-command-in-linux-with-examples/
+[hostname command in Linux](https://www.geeksforgeeks.org/hostname-command-in-linux-with-examples/)
 
-(https://unix.stackexchange.com/questions/167935/details-about-sudo-commands-executed-by-all-user
+[Details about sudo commands executed by all user](https://unix.stackexchange.com/questions/167935/details-about-sudo-commands-executed-by-all-user)
 
-```
+[Understanding Physical and Logical CPUs](https://www.linkedin.com/pulse/understanding-physical-logical-cpus-akshay-deshpande/)
+
+[Setup a Cron Job](https://vitux.com/how-to-setup-a-cron-job-in-debian-10/)
+
+---
+\
+1.Create a script named `monitoring.sh`
+```bash
 #!/bin/bash
 arch=$(uname -a)
 cpu=$(nproc)
@@ -246,24 +296,23 @@ ip1=$(hostname -I)
 ip2=$(ip address | grep 'ether '| awk '{ print $2}')
 sudo=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
 wall "
-        #Architectur: $arch
-        #CPU physical: $cpu
-        #vCPU : $vcpu
-        #Memory Usage: $memu1 ($memu2%)
-        #Disk Usage: $disku
-        #CPU load: $cpul
-        #Last boot: $boot
-        #LVM use: $lvm
-        #Connections TCP : $tcp ESTABLISHED
-        #User log: $userl
-        #Network: IP $ip1 ($ip2)
-        #Sudo : $sudo cmd
+		#Architectur: $arch
+		#CPU physical: $cpu
+		#vCPU : $vcpu
+		#Memory Usage: $memu1 ($memu2%)
+		#Disk Usage: $disku
+		#CPU load: $cpul
+		#Last boot: $boot
+		#LVM use: $lvm
+		#Connections TCP : $tcp ESTABLISHED
+		#User log: $userl
+		#Network: IP $ip1 ($ip2)
+		#Sudo : $sudo cmd
 "
 ```
-(https://www.linkedin.com/pulse/understanding-physical-logical-cpus-akshay-deshpande#:~:text=Now%20that%20we%20know%20the,Cores%20present%20on%20a%20processor.)
 ---
 
-(https://vitux.com/how-to-setup-a-cron-job-in-debian-10/)
+
 
 ```
 sudo crontab -e
@@ -287,4 +336,3 @@ sudo crontab -r
 
 
 https://www.tecmint.com/install-lighttpd-in-ubuntu/
-
